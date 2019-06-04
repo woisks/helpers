@@ -1,0 +1,20 @@
+{
+  "name": "woisks/helpers",
+  "description": "woisks helpers",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "lifenglin",
+      "email": "woisks@126.com"
+    }
+  ],
+  "require": {
+    "php": "7.*"
+  },
+  "autoload": {
+   "files": [
+     "helpers.php"
+   ]
+  }
+
+}
