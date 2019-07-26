@@ -145,19 +145,20 @@ if (!function_exists('res')) {
     /**
      * res 2019/5/10 12:09
      *
-     * @param int        $code
-     * @param string     $msg
-     * @param array|null $data
+     * @param int    $code
+     * @param string $msg
+     * @param null   $data
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    function res(int $code, string $msg, array $data = null): JsonResponse
+    function res(int $code, string $msg, $data = null): JsonResponse
     {
         if (empty($data)) {
             return response()->json(['code' => $code, 'msg' => $msg])->setStatusCode(200);
         }
 
         return response()->json(['code' => $code, 'msg' => $msg, 'data' => $data])->setStatusCode(200);
+
     }
 }
 
@@ -359,15 +360,17 @@ if (!function_exists('ip_string_decode')) {
 
 
 if (!function_exists('ip_string_encode')) {
+
     /**
-     * ip_string_encode 2019/5/21 16:17
+     * ip_string_encode 2019/6/6 21:03
      *
-     * @param string $ip
+     * @param $ip
      *
      * @return string
      */
-    function ip_string_encode(string $ip)
+    function ip_string_encode($ip)
     {
+        $ip = is_int($ip) ? (string)$ip : $ip;
         $bool = (bool)filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
 
         if ($bool) {
