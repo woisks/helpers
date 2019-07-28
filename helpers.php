@@ -10,14 +10,14 @@ if (!function_exists('config_toFile')) {
      * config_toFile 2019/5/21 14:04
      *
      * @param string $filename
-     * @param array  $data
+     * @param array $data
      *
      * @return bool|int
      */
     function config_toFile(string $filename, array $data)
     {
         $path = base_path() . '\config\\' . $filename . '.php';
-        $str = '<?php return ' . var_export($data, true) . ';';
+        $str  = '<?php return ' . var_export($data, true) . ';';
 
         return file_put_contents($path, $str);
     }
@@ -113,7 +113,7 @@ if (!function_exists('base_random_numeric')) {
      * base_random_numeric 2019/5/10 12:09
      *
      * @param string $string
-     * @param int    $int
+     * @param int $int
      *
      * @return string
      */
@@ -123,15 +123,15 @@ if (!function_exists('base_random_numeric')) {
         if ($string == '0-9') {
 
             $characters = str_repeat('0123456789', $int);
-            $str = substr(str_shuffle($characters), 0, $int);
+            $str        = substr(str_shuffle($characters), 0, $int);
         }
         if ($string == '1-9') {
             $characters = str_repeat('123456789', $int);
-            $str = substr(str_shuffle($characters), 0, $int);
+            $str        = substr(str_shuffle($characters), 0, $int);
         }
         if ($string == 'a-z') {
             $characters = str_repeat('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', $int);
-            $str = substr(str_shuffle($characters), 0, $int);
+            $str        = substr(str_shuffle($characters), 0, $int);
         }
 
         return $str;
@@ -145,9 +145,9 @@ if (!function_exists('res')) {
     /**
      * res 2019/5/10 12:09
      *
-     * @param int    $code
+     * @param int $code
      * @param string $msg
-     * @param null   $data
+     * @param null $data
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -344,10 +344,10 @@ if (!function_exists('ip_string_decode')) {
                 $ip2long = bcdiv($ip2long, '2', 0);
             } while (bccomp($ip2long, '0'));
             $bin = str_pad($bin, 128, '0', STR_PAD_LEFT);
-            $ip = [];
+            $ip  = [];
             for ($bit = 0; $bit <= 7; $bit++) {
                 $bin_part = substr($bin, $bit * 16, 16);
-                $ip[] = dechex(bindec($bin_part));
+                $ip[]     = dechex(bindec($bin_part));
             }
             $ip = implode(':', $ip);
 
@@ -370,7 +370,7 @@ if (!function_exists('ip_string_encode')) {
      */
     function ip_string_encode($ip)
     {
-        $ip = is_int($ip) ? (string)$ip : $ip;
+        $ip   = is_int($ip) ? (string)$ip : $ip;
         $bool = (bool)filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
 
         if ($bool) {
@@ -380,7 +380,7 @@ if (!function_exists('ip_string_encode')) {
             }
 
             $ip_n = inet_pton($ip);
-            $bin = '';
+            $bin  = '';
             for ($bit = strlen($ip_n) - 1; $bit >= 0; $bit--) {
                 $bin = sprintf('%08b', ord($ip_n[$bit])) . $bin;
             }
