@@ -106,6 +106,41 @@ if (!function_exists('create_numeric_id')) {
     }
 }
 
+if (!function_exists('create_photo_id')) {
+
+
+    /**
+     * create_photo_id 2019/5/10 12:09
+     *
+     *
+     * @return int
+     */
+    function create_photo_id(): int
+    {
+        return (int)(Carbon::now()->timestamp . base_random_numeric('0-9', 7));
+
+    }
+}
+
+if (!function_exists('create_photo_type')) {
+
+
+    /**
+     * create_photo_type. 2019/7/30 21:12.
+     *
+     * @param $str
+     *
+     * @return int
+     */
+    function create_photo_type($str = null): int
+    {
+        if (empty($str)) {
+            return (int)collect([1, 3, 5, 7, 9])->random();
+        }
+        return (int)collect([2, 4, 6, 8, 0])->random();
+    }
+}
+
 if (!function_exists('base_random_numeric')) {
 
 
