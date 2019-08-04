@@ -41,7 +41,38 @@ if (!function_exists('unlink_file')) {
         }
     }
 }
+if (!function_exists('substr_text')) {
+    /**
+     * substr_text. 2019/8/2 11:26.
+     *
+     * @param $text
+     * @param $numeric
+     *
+     * @return bool|string
+     */
+    function substr_text($text, $numeric)
+    {
+        $except = trim(strip_tags($text));
 
+        return mb_substr($except, 0, $numeric, 'utf8');
+    }
+}
+
+if (!function_exists('words_len')) {
+    /**
+     * words_len. 2019/8/2 12:25.
+     *
+     * @param $text
+     *
+     * @return bool|int
+     */
+    function words_len($text)
+    {
+        $except = trim(strip_tags($text));
+
+        return mb_strlen($except, 'utf8');
+    }
+}
 
 if (!function_exists('random_numeric')) {
 
